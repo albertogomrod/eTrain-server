@@ -18,16 +18,15 @@ router.post("/", isAuthenticated, async (req, res, next) => {
 
   // console.log(req.body)
 
-  const { title, description, isUrgent } = req.body
+  const { title, subtitle, description, photo } = req.body
 
   try {
     
     const response = await Blog.create({
-      title: title,
-      description: description,
-      isUrgent: isUrgent,
-      // ejemplo para crear Blogs de un usuario usando el payload
-      owner: req.payload._id
+      title,
+      subtitle,
+      description,
+      photo,
     })
 
     // res.json(response)
@@ -75,14 +74,15 @@ router.delete("/:blogId", async (req, res, next) => {
 router.patch("/:blogId", async (req, res, next) => {
 
   const { blogId } = req.params;
-  const { title, description, isUrgent } = req.body;
+  const { title, subtitle, description, photo } = req.body;
 
   try {
     
     await Blog.findByIdAndUpdate(blogId, {
       title,
+      subtitle,
       description,
-      isUrgent
+      photo,
     })
 
     res.json("Blog bien, documento actualizado")

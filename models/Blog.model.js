@@ -7,13 +7,12 @@ const blogSchema = new Schema(
       required: [true, "Se requiere título para la entrada."],
       unique: true,
     },
+    subtitle: {
+      type: String,
+    },
     description: {
       type: String,
       required: [true, "Se requiere una descripción para la entrada."],
-    },
-    owner: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
     },
     photo: {
         type: String,
