@@ -4,7 +4,7 @@ const blogSchema = new Schema(
   {
     title: {
       type: String,
-      required: [true, "Se requiere título para la entrada."],
+      required: true,
       unique: true,
     },
     subtitle: {
@@ -12,7 +12,7 @@ const blogSchema = new Schema(
     },
     description: {
       type: String,
-      required: [true, "Se requiere una descripción para la entrada."],
+      required: true,
     },
     photo: {
         type: String,

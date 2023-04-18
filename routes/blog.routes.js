@@ -14,7 +14,7 @@ router.get("/", isAuthenticated, async (req, res, next) => {
 })
 
 // POST "/api/blog" => crear un nueva entrada de blog
-router.post("/", isAuthenticated, async (req, res, next) => {
+router.post("/", async (req, res, next) => {
 
   // console.log(req.body)
 
@@ -33,6 +33,7 @@ router.post("/", isAuthenticated, async (req, res, next) => {
     res.status(200).json()
 
   } catch (error) {
+    console.log(error)
     next(error)
   }
 
