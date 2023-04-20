@@ -4,9 +4,9 @@ const Blog = require("../models/Blog.model")
 
 
 // GET "/api/blog" => enviar la lista de entradas, solo los titulos
-router.get("/", isAuthenticated, async (req, res, next) => {
+router.get("/", async (req, res, next) => {
   try {
-    const response = await Blog.find().select("title")
+    const response = await Blog.find()
     res.json(response)
   } catch (error) {
     next(error)
