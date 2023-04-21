@@ -72,7 +72,7 @@ router.delete("/:blogId", async (req, res, next) => {
 })
 
 // PATCH "/api/blog/:blogId" => recibir la info de actualización y actualizará un Blog por su id
-router.patch("/:blogId", async (req, res, next) => {
+router.patch("/edit/:blogId", async (req, res, next) => {
 
   const { blogId } = req.params;
   const { title, subtitle, description, photo } = req.body;
