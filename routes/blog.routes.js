@@ -89,6 +89,7 @@ router.patch("/edit/:blogId", async (req, res, next) => {
     res.json("Blog bien, documento actualizado")
 
   } catch (error) {
+    console.log(error)
     next(error)
   }
 
