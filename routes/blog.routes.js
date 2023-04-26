@@ -56,7 +56,7 @@ router.get("/:blogId", async (req, res, next) => {
 })
 
 // DELETE "/api/blog/:blogId" => borrar un Blog por su id
-router.delete("/:blogId", async (req, res, next) => {
+router.delete("/delete/:blogId", async (req, res, next) => {
 
   const { blogId } = req.params;
 
