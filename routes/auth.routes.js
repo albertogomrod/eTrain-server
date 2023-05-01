@@ -10,7 +10,7 @@ const isAuthenticated = require("../middlewares/auth.middlewares.js");
 router.post("/signup", async (req, res, next) => {
 
   console.log(req.body)
-  const { email, password } = req.body
+  const { email, username, password } = req.body
 
   // 1. Validaciones de Backed
   // - Validar que los campos no esten vacios
@@ -35,6 +35,7 @@ router.post("/signup", async (req, res, next) => {
     // crear el documento de usuario en la BD
     await User.create({
       email: email,
+      username:username,
       password: hashPassword
     })
 
@@ -49,15 +50,15 @@ router.post("/signup", async (req, res, next) => {
 // POST "/api/auth/login" => Validar las credenciales del usuario
 router.post("/login", async (req, res, next) => {
   
-  const { email, password } = req.body
-  console.log(email, password)
+  const { username, password } = req.body
+  console.log(username, password)
 
   // validacion de que los campos no vengan vacios (hacerla cada uno :))
 
   try {
 
     // verificar que el usuario exista en la BD
-    const foundUser = await User.findOne({ email: email })
+    const foundUser = await User.findOne({ username: username })
     if (!foundUser) {
       res.status(400).json({ errorMessage: "Credenciales no validas" })
       return;
@@ -77,7 +78,7 @@ router.post("/login", async (req, res, next) => {
     // payload es el contenido del Token que identifica al usuario
     const payload = {
       _id: foundUser._id,
-      email: foundUser.email,
+      email: foundUser.username,
       // si tuviesemos roles, podrian ir en el payload
     }
     
